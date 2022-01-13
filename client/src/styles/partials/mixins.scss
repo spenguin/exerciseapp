@@ -1,0 +1,56 @@
+/** Mixins */
+
+@use "../partials/variables.scss" as *;
+@use "../partials/colours.scss" as *;
+
+/**
+Function to generate an RGB colour backgrund with a provided opacity
+(https://stackoverflow.com/questions/10929458/sass-converting-hex-to-rgba-for-background-opacity)
+*/
+@mixin background-opacity($color, $opacity: 0.3) {
+  background: $color; /* The Fallback */
+  background: rgba($color, $opacity);
+}
+/*
+  element {
+       @include background-opacity(#333, 0.5);
+  }*/
+
+/**
+Function to wrap appropriate media query around content
+param: screen size, either tablet or desktop 
+Requires breakpoints to be set or imported
+*/
+@mixin screen-greater-than($size) {
+  @if ($size == tablet) {
+    @media screen and (min-width: $ISTablet) {
+      @content;
+    }
+  } @else if ($size == desktop) {
+    @media screen and (min-width: $ISDesktop) {
+      @content;
+    }
+  } @else if ($size == maxwidth) {
+    @media screen and (min-width: 2000px) {
+      @content;
+    }
+  }
+}
+
+@mixin section-padding {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+@mixin bottom-line {
+  border-bottom: 1px solid $ISCloud;
+}
+
+@mixin flex($justify-content, $align-items, $flex-direction: row) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $flex-direction;
+}

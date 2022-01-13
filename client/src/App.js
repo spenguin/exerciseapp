@@ -9,15 +9,25 @@ import {
   Redirect } from 'react-router-dom';
 
 // import build pages
+import SiteHeader from "./components/SiteHeader/SiteHeader";
+import HomePage from "./pages/HomePage/HomePage";
+import ViewCategories from "../src/pages/ViewCategories/ViewCategories";
+
+
 
 // import SCSS
 import "../src/styles/app.scss";
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <BrowserRouter>
+      <SiteHeader />
+        <Switch>
+          <Route path="/" component={HomePage} />
+          <Route path="/categories" component={ViewCategories} />
+        </Switch>
+      {/* <SiteFooter /> */}
+    </BrowserRouter>
   );
 }
 

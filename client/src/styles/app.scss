@@ -1,5 +1,14 @@
 // App styles - aggregator for style files
 
-.class {
-  color: black;
-}
+@use "./partials/settings.scss" as *;
+@use "./partials/colours.scss" as *;
+@use "./partials/fonts.scss" as *;
+@use "./partials/variables.scss" as *;
+@use "./partials/mixins.scss" as *;
+
+// Common style files
+// @use "./partials/globals.scss" as *;
+// @use "./partials/headings.scss" as *;
+@use "./partials/buttons.scss" as *;
+// @use "./partials/forms.scss" as *;
+@use "./partials/siteStyles.scss" as *;

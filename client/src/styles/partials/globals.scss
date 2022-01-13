@@ -1,0 +1,22 @@
+/* Global styles */
+
+@use "../partials/colours.scss" as *;
+
+body {
+  background-color: $ISLightGrey;
+}
+
+a {
+  text-decoration: none;
+  color: $ISIndigo;
+}
+
+/* Max width wrapper */
+.max-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}

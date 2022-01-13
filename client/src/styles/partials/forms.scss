@@ -1,0 +1,23 @@
+/** Forms styles */
+
+@use "../partials/colours.scss" as *;
+@use "../partials/variables.scss" as *;
+
+.input {
+  font-size: 0.8125rem;
+  border-radius: $formRadius;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  border: 1px solid $ISCloud;
+  margin-bottom: 1rem;
+  font-family: inherit;
+  &:active {
+    border-color: $ISIndigo;
+  }
+  &.error {
+    border-color: $ISRed;
+  }
+  &__search {
+    background: url("../../assets/images/icons/search-24px.svg") no-repeat right;
+  }
+}

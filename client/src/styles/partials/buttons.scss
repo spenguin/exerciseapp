@@ -1,0 +1,26 @@
+/** Buttons styles */
+
+@use "../partials/colours.scss" as *;
+@use "../partials/variables.scss" as *;
+
+.btn {
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8125rem;
+  text-align: center;
+  border-radius: $btnRadius;
+  text-decoration: none;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5;
+  box-shadow: 2px 2px 3px $EABlack;
+  &:hover {
+    box-shadow: 0.5px 0.5px 1px $EABlack;
+  }
+  &__nav {
+    background-color: $EASalmon;
+    color: $EAWhite;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}

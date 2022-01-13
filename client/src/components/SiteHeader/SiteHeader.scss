@@ -1,0 +1,8 @@
+// Site Header styles
+
+@use "../../styles/partials/colours.scss" as *;
+
+.site-header {
+  height: 3rem;
+  background-color: $EAPaleGrey;
+}
