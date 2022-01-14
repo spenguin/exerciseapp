@@ -6,46 +6,38 @@ const { v4: uuid } = require('uuid');
 // Helper functions
 require( "../helpers/helperFunctions" );
 
-exports.index = ( _req, res ) => {
+exports.index = ( _req, res ) => {  
     // Select id, name from exercises;
-    const {id} = _req.params.id;
+    const id = _req.body ? _req.body.id : null;
 
     if( id )    // Read a single row
     {
-        knex('exercises')
+        knex('meta')
         .where({ id: id })
         .then((data) => {
           // Diving Deeper (return 404 if the warehouse isn't found)
           if (!data.length) {
-            return res.status(404).json({ success: false, error: 'Exercise not found' });
+            return res.status(404).json({ success: false, error: 'Category not found' });
           }
     
           // Diving Deeper (single entity should return one object)
           res.status(200).json(data[0]);
         })
         .catch((err) =>
-          res.status(400).send(`Error retrieving exercise ${id} ${err}`)
+          res.status(400).send(`Error retrieving category ${id} ${err}`)
         );
     }
     else
     {
-        knex( 'exercises' )
-            .select( 'id', 'name' )
+        knex( 'meta' )
+            .select( 'id', 'parentId', 'name', )
             .then( (data) => {
+                data = nestArray( data, 'id', 'parentId' );
                 res.status(200).json(data);
             })
-            .catch((err) => res.status(400).send( "Error retrieving Exercises" ) 
+            .catch((err) => res.status(400).send( "Error retrieving Categories list" ) 
         );
     }
-}
-
-exports.categoryExercises = ( _req, res ) => {
-    // Select Exercise Id, Exercise Name from exercises where categoryId = id
-    knex( 'exercises as e' )
-        .innerJoin( 'exercise_meta as em', 'e.id', 'em.eId' )
-        .then( ( data ) => {
-            res.status(200).json(data);
-        });
 }
 
 
@@ -54,13 +46,14 @@ exports.add = ( _req, res ) => { console.log( "req", _req );
         return res.status( 400 ).json({ success: false, error: 'Please provide required information' });
     }
 
-    knex( 'exercises' )
+    knex( 'meta' )
         .insert( {
+            parentId: _req.body.parentId ? _req.body.parentId : 0,
             name: _req.body.name,
             slug: convertToSlug( _req.body.name )
         })
         .then( (data) => {
             res.status(201).json(data[0]);
         })
-        .catch((err) => res.status(400).send(`Error creating Exercise: ${err}`));
+        .catch((err) => res.status(400).send(`Error creating Category: ${err}`));
 }
