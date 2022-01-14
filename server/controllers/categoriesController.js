@@ -32,7 +32,7 @@ exports.index = ( _req, res ) => {
         knex( 'meta' )
             .select( 'id', 'parentId', 'name', )
             .then( (data) => {
-                data = nestArray( data, 'id', 'parentId' );
+                // data = nestArray( data, 'id', 'parentId' ); FIX
                 res.status(200).json(data);
             })
             .catch((err) => res.status(400).send( "Error retrieving Categories list" ) 
