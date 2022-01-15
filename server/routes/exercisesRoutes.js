@@ -9,6 +9,10 @@ router
     .route('/')
     .get( controller.index )
     .post( controller.add );
+
+router
+    .route( '/category/:categoryId' )
+    .get( controller.readByCategory );
     
 
 

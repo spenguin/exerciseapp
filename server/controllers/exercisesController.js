@@ -8,7 +8,7 @@ require( "../helpers/helperFunctions" );
 
 exports.index = ( _req, res ) => {
     // Select id, name from exercises;
-    const {id} = _req.params.id;
+    const id = _req.body ? _req.body.id : null;
 
     if( id )    // Read a single row
     {
@@ -39,8 +39,10 @@ exports.index = ( _req, res ) => {
     }
 }
 
-exports.categoryExercises = ( _req, res ) => {
+exports.readByCategory = ( _req, res ) => {
     // Select Exercise Id, Exercise Name from exercises where categoryId = id
+    console.log( 'req', _req.body );
+
     knex( 'exercises as e' )
         .innerJoin( 'exercise_meta as em', 'e.id', 'em.eId' )
         .then( ( data ) => {
