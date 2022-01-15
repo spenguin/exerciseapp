@@ -6,7 +6,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //Import helper functions
-import {renderOptions} from "../../utils/FormUtils/FormUtils";
+// import {renderOptions} from "../../utils/FormUtils/FormUtils"; FIX - might not be needed
 
 
 export default function CategoriesForm( {selectedCategory, categories} ) {
@@ -15,7 +15,7 @@ export default function CategoriesForm( {selectedCategory, categories} ) {
     const catValue = selectedCategory ? selectedCategory.name : '';
     const cancelLink = selectedCategory ? <Link to={ `/categories` }>Cancel</Link> : ''
     const subText = selectedCategory ? 'Amend' : 'Submit';
-    const options = renderOptions( categories, 'id', 'name' ); //console.log( 'options', options );
+    // const options = renderOptions( categories, 'id', 'name' ); //console.log( 'options', options );
 
     return (
         <form className="categories__list--form">

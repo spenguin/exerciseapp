@@ -11,7 +11,8 @@ import {
 // import build pages
 import SiteHeader from "./components/SiteHeader/SiteHeader";
 import HomePage from "./pages/HomePage/HomePage";
-import ViewCategories from "../src/pages/ViewCategories/ViewCategories";
+import ViewCategories from "./pages/ViewCategories/ViewCategories";
+import ViewExercises from "./pages/ViewExercises/ViewExercises";
 
 
 
@@ -24,8 +25,13 @@ function App() {
       <SiteHeader />
         <Switch>
           <Route path="/" exact component={HomePage} />
+
           <Route path="/categories/:categoryId" component={ViewCategories} />
           <Route path="/categories" component={ViewCategories} />
+
+          <Route path="/exercises/:exerciseId" component={ViewExercises} />
+          <Route path="/exercises" component={ViewExercises} />
+
         </Switch>
       {/* <SiteFooter /> */}
     </BrowserRouter>
