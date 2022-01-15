@@ -3,6 +3,13 @@
 @use "../../styles/partials/colours.scss" as *;
 
 .site-header {
-  height: 3rem;
+  padding: 1rem;
   background-color: $EAPaleGrey;
+}
+.site-logo {
+  display: inline-block;
+  width: 100%;
+  &__image {
+    width: 100%;
+  }
 }

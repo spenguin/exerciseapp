@@ -1,9 +1,22 @@
 // Site styles
 
+@use "../partials/colours.scss" as *;
+
 .site-main {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 2.5rem;
   padding-bottom: 1rem;
   background: url("../../assets/images/design/concrete_wall.png");
+  &__link {
+    color: $EAWhite;
+    text-transform: uppercase;
+    font-size: 0.675rem;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    &:hover {
+      color: $EAPaleGrey;
+    }
+  }
 }

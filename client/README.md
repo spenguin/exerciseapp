@@ -1,3 +1,8 @@
+# Credits
+
+The background image is from https://www.toptal.com/designers/subtlepatterns/concrete-wall/
+The icons are from https://icons8.com/line-awesome
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

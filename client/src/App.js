@@ -23,7 +23,8 @@ function App() {
     <BrowserRouter>
       <SiteHeader />
         <Switch>
-          <Route path="/" component={HomePage} />
+          <Route path="/" exact component={HomePage} />
+          <Route path="/categories/:categoryId" component={ViewCategories} />
           <Route path="/categories" component={ViewCategories} />
         </Switch>
       {/* <SiteFooter /> */}

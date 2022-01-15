@@ -23,11 +23,11 @@ Requires breakpoints to be set or imported
 */
 @mixin screen-greater-than($size) {
   @if ($size == tablet) {
-    @media screen and (min-width: $ISTablet) {
+    @media screen and (min-width: $Tablet) {
       @content;
     }
   } @else if ($size == desktop) {
-    @media screen and (min-width: $ISDesktop) {
+    @media screen and (min-width: $Desktop) {
       @content;
     }
   } @else if ($size == maxwidth) {
