@@ -2,13 +2,25 @@
 
 @use "../partials/colours.scss" as *;
 
-body {
-  background-color: $ISLightGrey;
+main {
+  // background-color: $ISLightGrey;
+  &::before {
+    content: "";
+    background: url("../../assets/images/design/so-white.png");
+    background-size: cover;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
 }
 
 a {
   text-decoration: none;
-  color: $ISIndigo;
+  color: $EABlack;
 }
 
 /* Max width wrapper */

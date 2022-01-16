@@ -10,6 +10,7 @@ import {
 
 // import build pages
 import SiteHeader from "./components/SiteHeader/SiteHeader";
+import SiteFooter from "./components/SiteFooter/SiteFooter";
 import HomePage from "./pages/HomePage/HomePage";
 import ViewCategories from "./pages/ViewCategories/ViewCategories";
 import ViewExercises from "./pages/ViewExercises/ViewExercises";
@@ -23,6 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <SiteHeader />
+        <main>
         <Switch>
           <Route path="/" exact component={HomePage} />
 
@@ -33,7 +35,8 @@ function App() {
           <Route path="/exercises" component={ViewExercises} />
 
         </Switch>
-      {/* <SiteFooter /> */}
+        </main>
+      <SiteFooter />
     </BrowserRouter>
   );
 }

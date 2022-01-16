@@ -1,0 +1,18 @@
+// Site Footer styles
+
+@use "../../styles/partials/colours.scss" as *;
+
+.site-footer {
+  background: url("../../assets/images/design/concrete_wall.png");
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  align-items: center;
+  border-top: 2px solid $EAPaleGrey;
+  &__link {
+    color: $EAWhite;
+    font-size: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+}

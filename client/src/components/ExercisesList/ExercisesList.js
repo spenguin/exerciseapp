@@ -6,8 +6,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Import Components
-import CategoriesItem from './_ExercisesItem';
-// import CategoriesForm from './_ExercisesForm';
+import ExercisesItem from './_ExercisesItem';
+import ExercisesForm from './_ExercisesForm';
 
 // Import SCSS
 import "../ExercisesList/ExercisesList.scss";
@@ -15,7 +15,7 @@ import "../ExercisesList/ExercisesList.scss";
 export default function ExercisesList( {exercises, selectedExercise} ) {
     return (
         <div className="exercises__list--wrapper list__wrapper">
-            <CategoriesForm selectedExercise={selectedExercise} exercises={exercises} />
+            <ExercisesForm selectedExercise={selectedExercise} exercises={exercises} />
             <ul className="exercises__list list">
                 {exercises.map(exercise => {
                     return (
