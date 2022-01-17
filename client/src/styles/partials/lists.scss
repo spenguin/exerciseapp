@@ -11,10 +11,11 @@
     justify-content: space-between;
   }
   &__wrapper {
-    padding: 1rem;
+    padding: 0.5rem;
     background-color: $EAWhite;
     border-radius: $formRadius;
-    box-shadow: inset 5px 1px 1px $EAGrey;
+    box-shadow: inset 2px 1px 1px $EAGrey;
     line-height: 2.5rem;
+    border: 1px solid $EAPaleGrey;
   }
 }

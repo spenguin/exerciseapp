@@ -1,6 +1,14 @@
 // Home Page styles
 
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
 .home-wrapper {
   display: flex;
   flex-direction: column;
+  @include screen-greater-than(tablet) {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
 }
