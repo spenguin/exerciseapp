@@ -17,7 +17,7 @@ class ViewCategories extends Component {
         categoryList: []
     }
 
-    componentDidMount() {
+    componentDidMount() { 
         // Fetch list of Categories from server
         axios
             .get( 'http://localhost:8080/categories' )
@@ -30,7 +30,7 @@ class ViewCategories extends Component {
     }
 
     componentDidUpdate(prevProps) { 
-
+        //console.log( 'update' );
     }
 
     render() {
@@ -42,7 +42,7 @@ class ViewCategories extends Component {
         else
         {
             const selectedCategory = this.props.match.params.categoryId ? this.state.categoryList[this.props.match.params.categoryId-1] : null; 
-            console.log( 'selectedCategory', selectedCategory);
+            // console.log( 'selectedCategory', selectedCategory);
             
             return (
                 <section className="categories site-main">

@@ -17,13 +17,17 @@ import {shapeNestedArray} from "../../utils/ArrayUtils/ArrayUtils";
 import "../CategoriesList/CategoriesList.scss";
 
 export default function CategoriesList( {categories, selectedCategory} ) {
+
+    const revealModal = () => {
+        
+    }
     
-    let shapedCategories = shapeNestedArray( categories, 'parentId' ); 
+    let shapedCategories = shapeNestedArray( categories, 'parentId' ); //console.log( 'shaped', shapedCategories );
 
     return (
         <div className="categories__list--wrapper list__wrapper">
             <Modal>
-            <CategoriesForm selectedCategory={selectedCategory} categories={categories} />
+                <CategoriesForm selectedCategory={selectedCategory} categories={shapedCategories} />
             </Modal>
 
             
@@ -48,10 +52,11 @@ export default function CategoriesList( {categories, selectedCategory} ) {
                                     )})}
                             </ul>
                         </li>
-                        <li className="categories__list--item list__item">
-                            <Link to={ `/categories` } className="btn">Add a New Category</Link>
+                        <li>
+                            <button className="btn btn__add" onClick={revealModal}>Add a New Category</button> 
                         </li>
-                    </ul>                            
+                    </ul>  
+                         
                 )})}
         </div>
     );

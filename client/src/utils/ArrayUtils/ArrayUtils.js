@@ -18,7 +18,7 @@ export function shapeNestedArray( array, parentKeyStr )
     for( let i = 0; i < array.length; i++ )
     {   
         let parentId = array[i][parentKeyStr]; 
-        console.log( 'parentId', parentId );
+        
         if( parentId )
         {   
             o[parentId]['children'].push( array[i] );
