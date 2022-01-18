@@ -1,0 +1,18 @@
+// Modal styles
+
+@use "../../styles/partials/colours.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+
+.modal {
+  width: 95%;
+  background-color: white;
+  position: fixed;
+  z-index: 1;
+  height: 100%;
+  margin-left: -1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 0.875rem;
+  border: 1px solid $EAPaleGrey;
+}

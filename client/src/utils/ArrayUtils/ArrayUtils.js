@@ -5,6 +5,7 @@
  * Restructure a flat associative array into a nested one
  * based on an array key
  * Note: Currently assumes a depth of two
+ * @todo Need to make this more portable
  * @param {arr} array of data
  * @param {str} parentKeyStr
  * @returns {arr} nested array
