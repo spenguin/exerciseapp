@@ -23,7 +23,16 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Aquire";
+  src: url("../../assets/fonts/AquireRegular.woff2") format("woff2"),
+    url("../../assets/fonts/AquireRegular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
 $font-family: "BeVietmanPro", sans-serif;
+$logo-family: "Aquire", sans-serif;
 
 body {
   font-family: $font-family;

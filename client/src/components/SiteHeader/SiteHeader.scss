@@ -1,15 +1,27 @@
 // Site Header styles
 
 @use "../../styles/partials/colours.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/fonts.scss" as *;
 
 .site-header {
   padding: 1rem;
   background-color: $EAPaleGrey;
+  box-shadow: 0 4px 3px -2px $EABlack;
 }
 .site-logo {
   display: inline-block;
   width: 100%;
-  &__image {
-    width: 100%;
+  text-align: center;
+  &__text {
+    font-size: 3rem;
+    background: -webkit-linear-gradient($EARed, $EABlack);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: $logo-family;
+    @include screen-greater-than(tablet) {
+      font-size: 5rem;
+    }
   }
 }
