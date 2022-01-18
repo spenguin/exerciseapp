@@ -6,7 +6,7 @@
 
 .modal {
   width: 95%;
-  background-color: $EABeige;
+  background-color: $EAPaleGrey;
   position: fixed;
   z-index: 1;
   height: 100%;
@@ -14,7 +14,12 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   border-radius: 0.875rem;
-  border: 1px solid $EAPaleGrey;
+  border: 1px solid $EAGrey;
   box-shadow: 3px 3px 5px gray;
   right: 120%;
+  transition-duration: 2s;
+  &.active {
+    right: 2.5%;
+    transition-duration: 2s;
+  }
 }

@@ -9,9 +9,13 @@ import "./Modal.scss";
 
 
 export default class Modal extends Component {
+
+
     render(){
+        const { isActive } = this.props; console.log( 'active', isActive ? "active" : "" );
+
         return (
-            <div className="modal">
+            <div className={`modal ${isActive ? "" : "active"}`}>
                 {this.props.children}
             </div>
         );

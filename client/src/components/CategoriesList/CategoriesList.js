@@ -2,7 +2,7 @@
 // called from ViewCategories.js
 
 //Import node components
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
 // Import Components
@@ -18,15 +18,17 @@ import "../CategoriesList/CategoriesList.scss";
 
 export default function CategoriesList( {categories, selectedCategory} ) {
 
-    const revealModal = () => {
-        
+    const [isActive, setActive] = useState("false");
+
+    const toggleModal = () => {
+        setActive(!isActive);
     }
     
     let shapedCategories = shapeNestedArray( categories, 'parentId' ); //console.log( 'shaped', shapedCategories );
 
     return (
         <div className="categories__list--wrapper list__wrapper">
-            <Modal>
+            <Modal isActive={isActive}>
                 <CategoriesForm selectedCategory={selectedCategory} categories={shapedCategories} />
             </Modal>
 
@@ -53,7 +55,7 @@ export default function CategoriesList( {categories, selectedCategory} ) {
                             </ul>
                         </li>
                         <li>
-                            <button className="btn btn__add" onClick={revealModal}>Add a New Category</button> 
+                            <button className="btn btn__add" onClick={toggleModal}>Add a New Category</button> 
                         </li>
                     </ul>  
                          
