@@ -3,7 +3,7 @@
 
 //Import node components
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom'; // FIX
+// import { Link } from 'react-router-dom'; // FIX
 
 // Import Components
 import CategoriesItem from './_CategoriesItem';

@@ -52,7 +52,7 @@ exports.readByCategory = ( _req, res ) => {
 }
 
 
-exports.add = ( _req, res ) => { console.log( "req", _req );
+exports.add = ( _req, res ) => { //console.log( "req", _req );
     if( !_req.body.name ) {
         return res.status( 400 ).json({ success: false, error: 'Please provide required information' });
     }

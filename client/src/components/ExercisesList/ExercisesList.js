@@ -10,13 +10,13 @@ import ExercisesItem from './_ExercisesItem';
 import ExercisesForm from './_ExercisesForm';
 
 // Import Utils
-import {shapeNestedArray} from "../../utils/ArrayUtils/ArrayUtils";
+// import {shapeNestedArray} from "../../utils/ArrayUtils/ArrayUtils";
 
 // Import SCSS
 import "../ExercisesList/ExercisesList.scss";
 
 export default function ExercisesList( {exercises, selectedExercise} ) {
-    let o = shapeNestedArray( exercises, 'parentId' );
+    // let o = shapeNestedArray( exercises, 'parentId' );
 
     return (
         <div className="exercises__list--wrapper list__wrapper">

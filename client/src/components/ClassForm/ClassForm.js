@@ -11,25 +11,29 @@ import React, {useState} from "react";
 // import SCSS
 import "./ClassForm.scss";
 
-export default function ClassList( {exerciseList, toggleModal} ) {
+export default function ClassList( {exerciseList, toggleModal} ) { 
 
     if( !exerciseList )
     {
-        return( <p>... Loading Exercises ...</p> );
+        return( <p>... Loading Exercises - 2 ...</p> );
     }
-    return (
-        <form className="class__list--form form">
-            <h2 className="form__heading">Select all Class Exercises</h2>
-            <label className="form__input-label">Select at least one</label>
-            { exerciseList.map( ( exercise ) => {
-                <div className="form__checkbox-wrapper">
-                    <input type="checkbox" name="exerciseId" value={exercise.id} />
-                    <label className="form__checkbox-label">{exercise.name}</label>
-                </div>
-            })};
+    else
+    {   
+        return (
+            <form className="class__list--form form">
+                <h2 className="form__heading">Select all Class Exercises</h2>
+                <label className="form__input-label">Select at least one</label>
+                { exerciseList.map( exercise  => { 
+                    return (
+                        <div className="form__checkbox-wrapper">
+                            <input type="checkbox" name="exerciseId" value={exercise.id} />
+                            <label className="form__checkbox-label">{exercise.name}</label>
+                        </div>
+                )})}
 
-            <button className="btn btn__submit">Select</button>
-            <a onClick={toggleModal} className="modal__toggle">Cancel</a>
-        </form>
-    );
+                <button className="btn btn__submit">Select</button>
+                <a onClick={toggleModal} className="modal__toggle">Cancel</a>
+            </form>
+        );
+    }
 }

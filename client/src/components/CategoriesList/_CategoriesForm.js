@@ -11,7 +11,7 @@ export default function CategoriesForm( {selectedCategory, categories, toggleMod
     const catValue = selectedCategory ? selectedCategory.name : '';
     const subText = selectedCategory ? 'Amend' : 'Submit';
     const categoryObj = categories[Object.keys(categories)[0]]; 
-    const parentSelected = selectedCategory ? '' : 'selected';
+    // const parentSelected = selectedCategory ? '' : 'selected';
 
     if( !categoryObj )
     {

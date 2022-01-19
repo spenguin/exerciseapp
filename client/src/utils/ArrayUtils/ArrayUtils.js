@@ -13,7 +13,7 @@
 export function shapeNestedArray( array, parentKeyStr )
 {     
     if( !parentKeyStr ) return array;
-    let o = new Array();
+    let o = [];
 
     for( let i = 0; i < array.length; i++ )
     {   

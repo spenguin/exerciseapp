@@ -26,8 +26,8 @@ export default class CreateClasses extends Component {
     componentDidMount() {
         // Fetch Goal Exercises
         axios
-            .get( 'http://localhost:8080/exercises/category/1' )
-            .then( response =>{
+            .get( 'http://localhost:8080/exercises/category/2' )
+            .then( response =>{ 
                 this.setState({
                     goalList: response.data
                 })
@@ -44,24 +44,31 @@ export default class CreateClasses extends Component {
             this.setState( { displayModal: true } )
             // setActive(!isActive);
         }        
-
+        console.log( 'state exercises', this.state.goalList );
+        const goalList = this.state.goalList;
         if( !this.state.goalList )
         {
-            return ( <p>... Loading Exercises ...</p> );
+            return ( <p>... Loading Exercises - 1 ...</p> );
         }
+        else 
+        {
 
-        return (
-            <section className="exercises site-main">
-                <div className="exercises-wrapper max-wrapper">
-                    <Link to="/" className="site-main__link">Home</Link>
-                    <div className="exercises__list--wrapper list__wrapper">
-                        <Modal isActive={this.state.displayModal}>
-                            <ClassForm classes={this.state.goalList} toggleModal={toggleModal} />
-                        </Modal>
-                        <button className="btn btn__add" onClick={toggleModal}>Select Goal Exercises</button> 
+            return (
+                <section className="exercises site-main">
+                    <div className="exercises-wrapper max-wrapper">
+                        <Link to="/" className="site-main__link">Home</Link>
+                        <div className="exercises__list--wrapper list__wrapper">
+                            <div className="exercises__message">
+                                <p>First select the Goal exercises</p>
+                            </div>
+                            <Modal isActive={this.state.displayModal}>
+                                <ClassForm exerciseList={goalList} toggleModal={toggleModal} />
+                            </Modal>
+                            <button className="btn btn__add" onClick={toggleModal}>Select Goal Exercises</button> 
+                        </div>
                     </div>
-                </div>
-            </section>
-        )
+                </section>
+            )
+        }
     }
 }

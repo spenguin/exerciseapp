@@ -3,7 +3,7 @@
 
 import React from 'react'
 import {NavLink} from 'react-router-dom'
-import Logo from "../../assets/images/logo/Exercist logo.png";
+// import Logo from "../../assets/images/logo/Exercist logo.png"; FIX
 import "./SiteHeader.scss"
 
 export default function SiteHeader() {
