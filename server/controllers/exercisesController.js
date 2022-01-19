@@ -41,10 +41,11 @@ exports.index = ( _req, res ) => {
 
 exports.readByCategory = ( _req, res ) => {
     // Select Exercise Id, Exercise Name from exercises where categoryId = id
-    console.log( 'req', _req.body );
+    console.log( 'req', _req.params );
 
     knex( 'exercises as e' )
         .innerJoin( 'exercise_meta as em', 'e.id', 'em.eId' )
+        .where( 'em.mId', _req.params.categoryId )
         .then( ( data ) => {
             res.status(200).json(data);
         });
