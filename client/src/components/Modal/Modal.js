@@ -12,10 +12,10 @@ export default class Modal extends Component {
 
 
     render(){
-        const { isActive } = this.props; console.log( 'active', isActive ? "active" : "" );
+        const { isActive } = this.props;
 
         return (
-            <div className={`modal ${isActive ? "" : "active"}`}>
+            <div className={`modal ${isActive ? "active" : ""}`}>
                 {this.props.children}
             </div>
         );

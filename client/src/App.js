@@ -13,6 +13,7 @@ import {
 import SiteHeader from "./components/SiteHeader/SiteHeader";
 import SiteFooter from "./components/SiteFooter/SiteFooter";
 import HomePage from "./pages/HomePage/HomePage";
+import CreateClasses from "./pages/CreateClasses/CreateClasses";
 import ViewCategories from "./pages/ViewCategories/ViewCategories";
 import ViewExercises from "./pages/ViewExercises/ViewExercises";
 
@@ -28,6 +29,8 @@ function App() {
         <main>
         <Switch>
           <Route path="/" exact component={HomePage} />
+
+          <Route path="/create" component={CreateClasses} />
 
           <Route path="/categories/:categoryId" component={ViewCategories} />
           <Route path="/categories" component={ViewCategories} />
