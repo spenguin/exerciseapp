@@ -8,16 +8,22 @@
   border-radius: $formRadius;
   padding: 0.5rem 1rem;
   width: 100%;
-  border: 1px solid $ISCloud;
+  border: 1px solid $EAPaleGrey;
   margin-bottom: 1rem;
   font-family: inherit;
   &:active {
-    border-color: $ISIndigo;
+    border-color: $EASalmon;
   }
   &.error {
-    border-color: $ISRed;
+    border-color: $EARed;
   }
   &__search {
-    background: url("../../assets/images/icons/search-24px.svg") no-repeat right;
+    // background: url("../../assets/images/icons/search-24px.svg") no-repeat right;
   }
+}
+
+.form__input-label {
+  font-size: 0.6875rem;
+  color: $EAGrey;
+  width: 100%;
 }

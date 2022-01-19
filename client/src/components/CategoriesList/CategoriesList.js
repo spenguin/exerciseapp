@@ -29,7 +29,7 @@ export default function CategoriesList( {categories, selectedCategory} ) {
     return (
         <div className="categories__list--wrapper list__wrapper">
             <Modal isActive={isActive}>
-                <CategoriesForm selectedCategory={selectedCategory} categories={shapedCategories} />
+                <CategoriesForm selectedCategory={selectedCategory} categories={shapedCategories} toggleModal={toggleModal} />
             </Modal>
 
             

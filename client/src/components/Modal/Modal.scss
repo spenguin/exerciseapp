@@ -22,4 +22,14 @@
     right: 2.5%;
     transition-duration: 2s;
   }
+  &__toggle {
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: $EABlack;
+    text-decoration: none;
+    margin-left: 3rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
