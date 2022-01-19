@@ -11,10 +11,15 @@ router
     .post( controller.add );
 
 router
+    .route( '/category/' )
+    .get( controller.readWithCategory );
+
+router
     .route( '/category/:categoryId' )
     .get( controller.readByCategory );
     
-
-
+router
+    .route( '/children/' )
+    .get( controller.readChildren );
 
 module.exports = router;
