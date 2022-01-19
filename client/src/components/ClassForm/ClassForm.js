@@ -11,7 +11,7 @@ import React, {useState} from "react";
 // import SCSS
 import "./ClassForm.scss";
 
-export default function ClassList( {exerciseList, toggleModal} ) { 
+export default function ClassList( {exerciseList, toggleModal, submitExercises} ) { 
 
     if( !exerciseList )
     {
@@ -20,7 +20,7 @@ export default function ClassList( {exerciseList, toggleModal} ) {
     else
     {   
         return (
-            <form className="class__list--form form">
+            <form className="class__list--form form" onSubmit={submitExercises}>
                 <h2 className="form__heading">Select all Class Exercises</h2>
                 <label className="form__input-label">Select at least one</label>
                 { exerciseList.map( exercise  => { 

@@ -15,7 +15,7 @@ export default class Modal extends Component {
         const { isActive } = this.props;
 
         return (
-            <div className={`modal ${isActive ? "active" : ""}`}>
+            <div className={`modal ${isActive ? "" : "active"}`}>
                 {this.props.children}
             </div>
         );

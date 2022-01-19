@@ -19,7 +19,8 @@ export default class CreateClasses extends Component {
         goalList: null,
         buildersList: null,
         warmupsList: null,
-        displayModal: false
+        displayModal: true,
+        selectedExercises: null
     };
     
 
@@ -41,10 +42,15 @@ export default class CreateClasses extends Component {
         // const [isActive, setActive] = useState("false");
 
         const toggleModal = () => {
-            this.setState( { displayModal: true } )
+            this.setState( { displayModal: !this.state.displayModal } )
             // setActive(!isActive);
-        }        
-        console.log( 'state exercises', this.state.goalList );
+        }       
+        
+        const submitExercises = (e) => {
+            e.preventDefault();
+            console.log( 'e', e.target.exerciseId.value );
+        }
+        
         const goalList = this.state.goalList;
         if( !this.state.goalList )
         {
@@ -62,7 +68,7 @@ export default class CreateClasses extends Component {
                                 <p>First select the Goal exercises</p>
                             </div>
                             <Modal isActive={this.state.displayModal}>
-                                <ClassForm exerciseList={goalList} toggleModal={toggleModal} />
+                                <ClassForm exerciseList={this.state.goalList} toggleModal={toggleModal} submitExercises={submitExercises} />
                             </Modal>
                             <button className="btn btn__add" onClick={toggleModal}>Select Goal Exercises</button> 
                         </div>
