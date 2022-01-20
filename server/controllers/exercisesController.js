@@ -32,6 +32,7 @@ exports.index = ( _req, res ) => {
     {
         knex( 'exercises' )
             .select( 'id', 'name' )
+            .orderBy( 'name' )
             .then( (data) => {
                 res.status(200).json(data);
             })
@@ -47,6 +48,7 @@ exports.readByCategory = ( _req, res ) => {
     knex( 'exercises as e' )
         .innerJoin( 'exercise_meta as em', 'e.id', 'em.eId' )
         .where( 'em.mId', _req.params.categoryId )
+        .orderBy( 'name' )
         .then( ( data ) => {
             res.status(200).json(data);
         })
@@ -58,6 +60,7 @@ exports.readByCategory = ( _req, res ) => {
 exports.readWithCategory = ( _req, res ) => {
     knex( 'exercises as e' )
         .innerJoin( 'exercise_meta as em', 'e.id', 'em.eId' )
+        .orderBy( 'name' )
         .then( ( data ) => {
             res.status(200).json(data);
         })
