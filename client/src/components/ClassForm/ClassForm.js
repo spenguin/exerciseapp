@@ -88,7 +88,7 @@ export default class ClassForm extends Component {
                     )})}
 
                     <button className="btn btn__submit">Select</button>
-                    <a onClick={this.props.toggleModal} className="modal__toggle">Cancel</a> {/* FIX */}
+                    <button type="button" className="btn btn__cancel" onClick={this.props.toggleModal}>Cancel</button>
                 </form>
             );
         }

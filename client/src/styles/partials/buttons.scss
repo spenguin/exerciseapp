@@ -28,4 +28,15 @@
       padding-right: 2rem;
     }
   }
+  &__cancel {
+    box-shadow: none;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    margin-left: 3rem;
+    &:hover {
+      box-shadow: none;
+      text-decoration: underline;
+    }
+  }
 }
