@@ -35,7 +35,7 @@ export default class CreateClasses extends Component {
         axios
             .get( 'http://localhost:8080/exercises/category' )
             .then( response =>{ 
-                let exercises = organiseExercises( response.data ); //console.log( 'exercises2', exercises[2] );
+                let exercises = organiseExercises( response.data ); console.log( 'exercises2', exercises[2] );
                 this.setState({
                     exerciseList: exercises
                 })
@@ -69,17 +69,20 @@ export default class CreateClasses extends Component {
         //     console.log( 'selectedExercises', this.state.selectedExercises );
         // }
 
-        const passSelection = (passedExercises) => {
-            console.log( 'passed Exercises', passedExercises );
-            const update = { [this.state.currentCategory]: passedExercises };
+        const passSelection = (passedExercises) => { 
+            const selectedCategoryExercises = this.state.exerciseList[this.state.currentCategory].children.filter( exercise => passedExercises.includes( exercise.id.toString() ) );
+            //  console.log( 'selected Cat Ex', selectedCategoryExercises );
+
+            // console.log( 'passed Exercises', passedExercises );
+            const update = { [this.state.currentCategory]: selectedCategoryExercises };
 
             this.setState({
                 selectedExercises: Object.assign( this.state.selectedExercises, update )
             })
-            console.log( 'selected Exercises', this.state.selectedExercises );
+             console.log( 'selected Exercises', this.state.selectedExercises );
 
         }
-        
+
         // const goalList = this.state.goalList;
         if( !this.state.exerciseList )
         {
