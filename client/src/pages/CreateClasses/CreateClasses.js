@@ -10,30 +10,41 @@ import axios from 'axios';
 import Modal from "../../components/Modal/Modal";
 import ClassForm from "../../components/ClassForm/ClassForm";
 
+// import utilities
+import {organiseExercises} from "../../utils/ArrayUtils/ArrayUtils";
+
 // import SCSS
 import "./CreateClasses.scss";
 
 export default class CreateClasses extends Component {
     // This isn't right but it'll get us over the hump
     state = {
-        goalList: null,
-        buildersList: null,
-        warmupsList: null,
+        exerciseList: null,
         displayModal: true,
-        selectedExercises: null
+        selectedExercises: {
+            2: {},
+            3: {},
+            4: {}
+        },
+        currentCategory: 2
     };
     
 
     componentDidMount() {
         // Fetch Goal Exercises
         axios
-            .get( 'http://localhost:8080/exercises/category/2' )
+            .get( 'http://localhost:8080/exercises/category' )
             .then( response =>{ 
+                let exercises = organiseExercises( response.data ); //console.log( 'exercises2', exercises[2] );
                 this.setState({
-                    goalList: response.data
+                    exerciseList: exercises
                 })
             })
             .catch( err => console.log( err ) ); 
+    }
+
+    componentDidUpdate() {
+
     }
 
 
@@ -46,19 +57,36 @@ export default class CreateClasses extends Component {
             // setActive(!isActive);
         }       
         
-        const submitExercises = (e) => {
-            e.preventDefault();
-            console.log( 'e', e.target.exerciseId.value );
+        // const submitExercises = (e) => {
+        //     e.preventDefault();
+        //     // let currentCategory = this.state.currentCategory;
+        //     console.log( 'values', e.target[0].value );
+        //     this.setState( {
+        //         selectedExercises: {currentCategory: e.target[0].value},
+        //         currentCategory: this.state.currentCategory + 1,
+        //         displayModal: true
+        //     })
+        //     console.log( 'selectedExercises', this.state.selectedExercises );
+        // }
+
+        const passSelection = (passedExercises) => {
+            console.log( 'passed Exercises', passedExercises );
+            const update = { [this.state.currentCategory]: passedExercises };
+
+            this.setState({
+                selectedExercises: Object.assign( this.state.selectedExercises, update )
+            })
+            console.log( 'selected Exercises', this.state.selectedExercises );
+
         }
         
-        const goalList = this.state.goalList;
-        if( !this.state.goalList )
+        // const goalList = this.state.goalList;
+        if( !this.state.exerciseList )
         {
-            return ( <p>... Loading Exercises - 1 ...</p> );
+            return ( <p>... Loading Exercises ...</p> );
         }
         else 
         {
-
             return (
                 <section className="exercises site-main">
                     <div className="exercises-wrapper max-wrapper">
@@ -68,7 +96,7 @@ export default class CreateClasses extends Component {
                                 <p>First select the Goal exercises</p>
                             </div>
                             <Modal isActive={this.state.displayModal}>
-                                <ClassForm exerciseList={this.state.goalList} toggleModal={toggleModal} submitExercises={submitExercises} />
+                                <ClassForm exerciseList={this.state.exerciseList[this.state.currentCategory]} toggleModal={toggleModal} passSelection={passSelection} />
                             </Modal>
                             <button className="btn btn__add" onClick={toggleModal}>Select Goal Exercises</button> 
                         </div>

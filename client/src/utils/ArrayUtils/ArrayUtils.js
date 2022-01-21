@@ -35,3 +35,21 @@ export function shapeNestedArray( array, parentKeyStr )
     }
     return o;
 } 
+
+/**
+ * A second sorting function - because one isn't enough, apparently
+ */
+export function organiseExercises( array )
+{
+    let o = [];
+    o[2] = {name:'Goal', 'children': []};
+    o[3] = {name:'Builder', 'children': []};
+    o[4] = {name:'Warmup', 'children': []};
+
+    for( let i = 0; i < array.length; i++ )
+    {   
+        o[array[i]['mId']]['children'][i] = array[i]; 
+    }
+
+    return o;
+}
