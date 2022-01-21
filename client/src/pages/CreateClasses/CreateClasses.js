@@ -48,9 +48,7 @@ export default class CreateClasses extends Component {
     }
 
 
-    render() {
-
-        // const [isActive, setActive] = useState("false");
+    render() { //console.log( 'selected Exercises', this.state.selectedExercises );
 
         const toggleModal = () => {
             this.setState( { displayModal: !this.state.displayModal } )
@@ -59,29 +57,25 @@ export default class CreateClasses extends Component {
         
         const passSelection = (passedExercises) => { 
             const selectedCategoryExercises = this.state.exerciseList[this.state.currentCategory].children.filter( exercise => passedExercises.includes( exercise.id.toString() ) );
-            //  console.log( 'selected Cat Ex', selectedCategoryExercises );
 
-            // console.log( 'passed Exercises', passedExercises );
-            const update = { [this.state.currentCategory]: selectedCategoryExercises };
-
+            const update = { [this.state.currentCategory]: {
+                name: this.state.exerciseList[this.state.currentCategory].name,
+                children: selectedCategoryExercises }
+            }
             this.setState({
                 selectedExercises: Object.assign( this.state.selectedExercises, update ),
                 currentCategory: this.state.currentCategory + 1
             })
-            //  console.log( 'selected Exercises', this.state.selectedExercises );
+        }
+
+        const sendList = () => {
 
         }
 
-        // const listComplete = ( this.state.exerciseList.length === this.state.currentCategory );
-        // const goalList = this.state.goalList;
         if( !this.state.exerciseList )
         {
             return ( <p>... Loading Exercises ...</p> );
         }
-        // else if( this.state.exerciseList.length === this.state.currentCategory )    // 
-        // {
-
-        // } 
         else
         {
             return (
@@ -89,19 +83,72 @@ export default class CreateClasses extends Component {
                     <div className="exercises-wrapper max-wrapper">
                         <Link to="/" className="site-main__link">Home</Link>
                         <div className="exercises__list--wrapper list__wrapper">
+
+
+
                             {(() => {
                                 if( this.state.exerciseList.length === this.state.currentCategory ) 
                                 {
                                     return (
-                                            Object.entries( this.state.exerciseList ).forEach( category => {
-                                                console.log( 'category', category );
-                                            }
-                                    ))
+                                        <button className="btn btn__send" onClick={sendList}>Send selected exercises to your email</button>
+                                    )
                                 }
                                 else
                                 {
                                     return (
                                         <>
+                                            <div className="exercise__list--selected list__presented">
+                                            {   
+                                                Object.entries( this.state.selectedExercises ).map( exercises => { console.log( 'exercises.children', exercises[1].children );
+                                                    if( exercises[1].children )
+                                                    {
+                                                        return (
+                                                            <>
+                                                                <h3>{exercises[1].name}</h3>
+                                                                <ul>
+                                                                { exercises[1].children.map( exercise => {
+                                                                    return (
+                                                                        <li>{exercise.name}</li>
+                                                                    )
+                                                                })}
+
+                                                                </ul>
+                                                            </>
+                                                        )
+                                                    }
+
+                                                //    return (
+                                                //         <>
+                                                //         <h3>{exercises[1].name}</h3>
+                                                //         <ul>
+                                                //         { exercises[1].children.map( exercise => {
+                                                //             return (
+                                                //                 <li>{exercise.name}</li>
+                                                //             )
+                                                //         })}
+                                                //         </ul>
+                                                //         </>
+                                                //    )
+                                                    
+                                                   
+                                                //     exercises.map( exercise => {
+                                                //         console.log( 'test exercise', exercise );
+                                                //    } )
+                                                    
+                                                })
+
+                                            // console.log( Object.entries( this.state.selectedExercises ) )
+                                                // Object.entries( this.state.selectedExercises ).forEach( category => { console.log( 'test category', category );
+                                                //     // if( category.children )
+                                                //     // {
+                                                //         return (
+                                                //             <h3>{category.name} exercises selected</h3>
+                                                //         )
+                                                //     // }
+                                                // })
+                                                
+                                            }
+                                            </div>                                        
                                             <div className="exercises__message">
                                                 <p>Select the {this.state.exerciseList[this.state.currentCategory].name} exercises</p>
                                             </div>
@@ -113,45 +160,6 @@ export default class CreateClasses extends Component {
                                     )
                                 }
                             })()}
-
-
-
-
-                        {/* {(() => {
-        if (someCase) {
-          return (
-            <div>someCase</div>
-          )
-        } else if (otherCase) {
-          return (
-            <div>otherCase</div>
-          )
-        } else {
-          return (
-            <div>catch all</div>
-          )
-        }
-      })()} */}
-{/* 
-                            {
-                               listComplete ? 
-                               Object.entries( this.state.exerciseList ).forEach( category => {
-                                console.log( 'category', category );
-                              })
-                              ?
-                              
-                            
-                            }
-                             */}
-
-
-                            {/* {
-                                Object.entries( this.state.exerciseList ).forEach( category => {
-                                    console.log( 'category', category );
-                                  })
-                            } */}
-
- 
                         </div>
                     </div>
                 </section>

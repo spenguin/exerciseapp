@@ -39,7 +39,7 @@ export default class ClassForm extends Component {
             }
             else
             {
-                let newExercises = this.state.exercises.splice( index, 1 ); console.log( 'new', newExercises );
+                // let newExercises = this.state.exercises.splice( index, 1 );
                 this.setState({
                     exercises: this.state.exercises.splice( index, 1 )
                 });
