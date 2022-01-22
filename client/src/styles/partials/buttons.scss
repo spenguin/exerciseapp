@@ -42,4 +42,10 @@
   &__send {
     margin-top: 3rem;
   }
+  &__search--tiny {
+    padding: 0.75rem;
+    background: url("../../assets/icons/search.svg") no-repeat;
+    display: inline;
+    height: 2rem;
+  }
 }
