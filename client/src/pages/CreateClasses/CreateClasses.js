@@ -67,7 +67,46 @@ export default class CreateClasses extends Component {
             })
         }
 
+        /**
+         * Reset Class selection
+         */
+        const resetClass = () => { 
+            this.setState({
+                selectedExercises: {
+                    2: {},
+                    3: {},
+                    4: {}
+                },
+                currentCategory: 2
+            })
+        }
+
+
         const sendList = () => {
+            // var nodemailer = require('nodemailer');
+
+            // var transporter = nodemailer.createTransport({
+            //     service: 'gmail',
+            //     auth: {
+            //       user: 'soaringpenguin.press@gmail.com',
+            //       pass: 'Zaft1gpr355!'
+            //     }
+            //   });
+              
+            //   var mailOptions = {
+            //     from: 'soaringpenguin.press@gmail.com',
+            //     to: 'soaringpenguin@gmail.com',
+            //     subject: 'Sending Email using Node.js',
+            //     text: 'That was easy!'
+            //   };
+              
+            //   transporter.sendMail(mailOptions, function(error, info){
+            //     if (error) {
+            //       console.log(error);
+            //     } else {
+            //       console.log('Email sent: ' + info.response);
+            //     }
+            //   }); 
 
         }
 
@@ -113,7 +152,7 @@ export default class CreateClasses extends Component {
                                         return (
                                             <div className="exercise__list--navigation">
                                                 <button className="btn btn__send" onClick={sendList}>Send selected exercises to your email</button>
-                                                <button className="btn btn__cancel" >Start Again</button>
+                                                <button className="btn btn__cancel" onClick={resetClass}>Start Again</button>
                                             </div>
                                         )
                                     }
@@ -128,7 +167,7 @@ export default class CreateClasses extends Component {
                                                     <ClassForm exerciseList={this.state.exerciseList[this.state.currentCategory]} toggleModal={toggleModal} passSelection={passSelection} />
                                                 </Modal>
                                                 <button className="btn btn__add" onClick={toggleModal}>Select {this.state.exerciseList[this.state.currentCategory].name} Exercises</button>
-                                                <button className="btn btn__cancel" >Start Again</button>
+                                                <button className="btn btn__cancel" onClick={resetClass}>Start Again</button>
                                             </>
                                         )
                                     }
