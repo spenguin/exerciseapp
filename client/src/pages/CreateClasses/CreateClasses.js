@@ -35,7 +35,7 @@ export default class CreateClasses extends Component {
         axios
             .get( 'http://localhost:8080/exercises/category' )
             .then( response =>{ 
-                let exercises = organiseExercises( response.data ); //console.log( 'exercises2', exercises[2] );
+                let exercises = organiseExercises( response.data ); 
                 this.setState({
                     exerciseList: exercises
                 })
@@ -48,11 +48,10 @@ export default class CreateClasses extends Component {
     }
 
 
-    render() { //console.log( 'selected Exercises', this.state.selectedExercises );
+    render() { 
 
         const toggleModal = () => {
             this.setState( { displayModal: !this.state.displayModal } )
-            // setActive(!isActive);
         }       
         
         const passSelection = (passedExercises) => { 
@@ -83,83 +82,58 @@ export default class CreateClasses extends Component {
                     <div className="exercises-wrapper max-wrapper">
                         <Link to="/" className="site-main__link">Home</Link>
                         <div className="exercises__list--wrapper list__wrapper">
+                            <div className="exercise__list--selected list__presented">
+                                {   
+                                    Object.entries( this.state.selectedExercises ).map( exercises => { //console.log( 'exercises.children', exercises[1].children );
+                                    if( exercises[1].children )
+                                    {
+                                        return (
+                                            <>
+                                                <h3>{exercises[1].name} exercises selected</h3>
+                                                <ul className="list__presented--list">
+                                                { exercises[1].children.map( exercise => {
+                                                    return (
+                                                        <li className="list__presented--item" key={exercise.id}>{exercise.name}</li>
+                                                    )
+                                                })}
 
+                                                </ul>
+                                            </>
+                                        )
+                                    }
+                                    else
+                                    {
+                                        return ("");
+                                    }
 
-
-                            {(() => {
-                                if( this.state.exerciseList.length === this.state.currentCategory ) 
-                                {
-                                    return (
-                                        <button className="btn btn__send" onClick={sendList}>Send selected exercises to your email</button>
-                                    )
-                                }
-                                else
-                                {
-                                    return (
-                                        <>
-                                            <div className="exercise__list--selected list__presented">
-                                            {   
-                                                Object.entries( this.state.selectedExercises ).map( exercises => { console.log( 'exercises.children', exercises[1].children );
-                                                    if( exercises[1].children )
-                                                    {
-                                                        return (
-                                                            <>
-                                                                <h3>{exercises[1].name}</h3>
-                                                                <ul>
-                                                                { exercises[1].children.map( exercise => {
-                                                                    return (
-                                                                        <li>{exercise.name}</li>
-                                                                    )
-                                                                })}
-
-                                                                </ul>
-                                                            </>
-                                                        )
-                                                    }
-
-                                                //    return (
-                                                //         <>
-                                                //         <h3>{exercises[1].name}</h3>
-                                                //         <ul>
-                                                //         { exercises[1].children.map( exercise => {
-                                                //             return (
-                                                //                 <li>{exercise.name}</li>
-                                                //             )
-                                                //         })}
-                                                //         </ul>
-                                                //         </>
-                                                //    )
-                                                    
-                                                   
-                                                //     exercises.map( exercise => {
-                                                //         console.log( 'test exercise', exercise );
-                                                //    } )
-                                                    
-                                                })
-
-                                            // console.log( Object.entries( this.state.selectedExercises ) )
-                                                // Object.entries( this.state.selectedExercises ).forEach( category => { console.log( 'test category', category );
-                                                //     // if( category.children )
-                                                //     // {
-                                                //         return (
-                                                //             <h3>{category.name} exercises selected</h3>
-                                                //         )
-                                                //     // }
-                                                // })
-                                                
-                                            }
-                                            </div>                                        
-                                            <div className="exercises__message">
-                                                <p>Select the {this.state.exerciseList[this.state.currentCategory].name} exercises</p>
+                                })}
+                                {(() => {
+                                    if( this.state.exerciseList.length === this.state.currentCategory ) 
+                                    {
+                                        return (
+                                            <div className="exercise__list--navigation">
+                                                <button className="btn btn__send" onClick={sendList}>Send selected exercises to your email</button>
+                                                <button className="btn btn__cancel" >Start Again</button>
                                             </div>
-                                            <Modal isActive={this.state.displayModal}>
-                                                <ClassForm exerciseList={this.state.exerciseList[this.state.currentCategory]} toggleModal={toggleModal} passSelection={passSelection} />
-                                            </Modal>
-                                            <button className="btn btn__add" onClick={toggleModal}>Select {this.state.exerciseList[this.state.currentCategory].name} Exercises</button>
-                                        </>
-                                    )
-                                }
-                            })()}
+                                        )
+                                    }
+                                    else
+                                    {
+                                        return (
+                                            <>
+                                                <div className="exercises__message">
+                                                    <p>Select the {this.state.exerciseList[this.state.currentCategory].name} exercises</p>
+                                                </div>
+                                                <Modal isActive={this.state.displayModal}>
+                                                    <ClassForm exerciseList={this.state.exerciseList[this.state.currentCategory]} toggleModal={toggleModal} passSelection={passSelection} />
+                                                </Modal>
+                                                <button className="btn btn__add" onClick={toggleModal}>Select {this.state.exerciseList[this.state.currentCategory].name} Exercises</button>
+                                                <button className="btn btn__cancel" >Start Again</button>
+                                            </>
+                                        )
+                                    }
+                            })()}                                
+                            </div>
                         </div>
                     </div>
                 </section>

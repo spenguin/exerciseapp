@@ -37,7 +37,7 @@ export default function CategoriesForm( {selectedCategory, categories, toggleMod
                 )}
 
                 <button className="btn btn__submit">{subText}</button>
-                <a onClick={toggleModal} className="modal__toggle">Cancel</a>
+                <button className="btn btn__cancel" onClick={toggleModal}>Cancel</button>
             </form>
         )
     }
