@@ -31,7 +31,7 @@ exports.index = ( _req, res ) => {
     else
     {
         knex( 'exercises' )
-            .select( 'id', 'name' )
+            // .select( 'id', 'name' ) FIX - May need to add a union
             .orderBy( 'name' )
             .then( (data) => {
                 res.status(200).json(data);
