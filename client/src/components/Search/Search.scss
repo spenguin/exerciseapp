@@ -1,5 +1,33 @@
 // Search style sheet
 
-.search__form {
-  display: flex;
+@use "../../styles/partials/colours.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+
+.search {
+  position: relative;
+  &__form {
+    display: flex;
+  }
+  &__result {
+    position: absolute;
+    background-color: $EAPaleGrey;
+    top: 2.25rem;
+    border-radius: 0 0 $formRadius $formRadius;
+    width: 87%;
+    &--item {
+      list-style: none;
+      font-size: 0.875rem;
+      padding-left: 1rem;
+      padding-right: 0.5rem;
+      line-height: 1.25rem;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      &:first-child {
+        padding-top: 0.5rem;
+      }
+      &:last-child {
+        padding-bottom: 0.5rem;
+      }
+    }
+  }
 }

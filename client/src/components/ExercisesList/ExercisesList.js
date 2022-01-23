@@ -14,12 +14,16 @@ import ExercisesItem from './_ExercisesItem';
 // Import SCSS
 import "../ExercisesList/ExercisesList.scss";
 
-export default function ExercisesList( {exercises, selectedExercise} ) { console.log( 'exercises', exercises );
+export default function ExercisesList( {exercises} ) { //console.log( 'exercises', exercises );
     // let o = shapeNestedArray( exercises, 'parentId' );
+
+    const myData = [].concat(exercises)
+    .sort((a, b) => a.created_at > b.created_at ? 1 : -1)
+    .slice( 0, 5 );
 
     return (
         <ul className="exercises__list list">
-            {exercises.map(exercise => {
+            {myData.map(exercise => {
                 return (
                     <ExercisesItem 
                         key={exercise.id}

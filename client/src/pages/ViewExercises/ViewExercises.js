@@ -43,7 +43,12 @@ export default class ViewExercises extends Component {
 
         const toggleModal = () => {
             this.setState( { displayModal: !this.state.displayModal } )
-        }           
+        }    
+        
+        const submitSearch = (e) => { 
+            e.preventDefault();
+            console.log( 'selected Exercise', e.target[0].value );
+        }
 
         if( !this.state.exercisesList )
         {
@@ -59,11 +64,12 @@ export default class ViewExercises extends Component {
                     <div className="exercises-wrapper max-wrapper">
                         <Link to="/" className="site-main__link">Home</Link>
                         <div className="exercises__list--wrapper list__wrapper">
-                            <Search />
+                            <Search list={this.state.exercisesList} submit={submitSearch} />
                             <div className="exercise__list--selected list__presented">
-                                <ExercisesList exercises={this.state.exercisesList} selectedExercise={selectedExercise} />
+                                <h3>Most recent Exercises</h3>
+                                <ExercisesList exercises={this.state.exercisesList} />
                                 <Modal isActive={this.state.displayModal}>
-                                    <ExercisesForm exerciseList={this.state.exerciseList} toggleModal={toggleModal} />
+                                    <ExercisesForm exerciseList={this.state.exercisesList} toggleModal={toggleModal} />
                                 </Modal>
                                 <button className="btn btn__add" onClick={toggleModal}>Add an Exercise</button>
                             </div>
