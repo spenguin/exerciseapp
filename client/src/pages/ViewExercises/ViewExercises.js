@@ -36,7 +36,15 @@ export default class ViewExercises extends Component {
     }
 
     componentDidUpdate(prevProps) { 
-        
+        // Fetch updated list of Categories from server
+        axios
+            .get( 'http://localhost:8080/exercises' )
+            .then( response => { 
+                this.setState({
+                    exercisesList: response.data
+                });
+            })
+            .catch( err => console.log( err ) );
     }
 
     render() {

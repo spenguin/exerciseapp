@@ -18,7 +18,7 @@ export default function ExercisesList( {exercises} ) { //console.log( 'exercises
     // let o = shapeNestedArray( exercises, 'parentId' );
 
     const myData = [].concat(exercises)
-    .sort((a, b) => a.created_at > b.created_at ? 1 : -1)
+    .sort((a, b) => a.created_at > b.created_at ? -1 : 1)
     .slice( 0, 5 );
 
     return (

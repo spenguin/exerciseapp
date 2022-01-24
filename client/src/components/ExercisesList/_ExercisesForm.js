@@ -59,26 +59,11 @@ export default class ExercisesForm extends Component {
                     console.log( 'response', response.data );
                     return response
                 })
-                // .then( response => 
-                //     axios
-                //         .post( )
-                // )
                 .catch( err => console.log( err ) );
+            this.props.toggleModal();
 
 
         } 
-
-        // if( this.state.exercises.length )
-        // {
-        //     this.props.passSelection( this.state.exercises );
-        //     this.props.toggleModal();
-        // }
-        // else
-        // {
-        //     this.setState({
-        //         message: "Exercise must have an unique name"
-        //     });
-        // }
     }
 
     /**
@@ -121,19 +106,19 @@ export default class ExercisesForm extends Component {
                     <div className="form__message error">{this.state.message}</div>
                     <h2 className="form__heading">{title}</h2>
                     <label className="form__input-label">Exercise Name (required)</label>
-                    <input className="form__input" name="name" placeholder="Exercise name" key={uuid()} />
+                    <input className="form__input" name="name" placeholder="Exercise name" />
                     <p className="form__note">Name must be unique</p>
 
                     <label className="form__input-label">Description</label>
-                    <textarea className="form__textarea" placeholder="Description (optional)" key={uuid()}></textarea>
+                    <textarea className="form__textarea" placeholder="Description (optional)"></textarea>
 
                     <label className="form__input-label">Select Category</label>
                         {
                             this.state.categories.map( category => {
                                 const selectedStr = category.id === 2 ? 'checked': ''
                                 return (
-                                    <div className="form__radio--wrapper">
-                                        <input type="radio" className="form__radio" name="categoryId" key={category.id} value={category.id} checked={selectedStr} /><label htmlFor="category" className="form__radio-label">{category.name}</label>
+                                    <div className="form__radio--wrapper" >
+                                        <input type="radio" className="form__radio" name="categoryId" value={category.id} checked={selectedStr} /><label htmlFor="category" className="form__radio-label">{category.name}</label>
                                     </div>
                                 )
                             })
