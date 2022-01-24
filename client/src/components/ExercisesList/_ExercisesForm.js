@@ -57,7 +57,12 @@ export default class ExercisesForm extends Component {
                 })
                 .then( response => {
                     console.log( 'response', response.data );
+                    return response
                 })
+                // .then( response => 
+                //     axios
+                //         .post( )
+                // )
                 .catch( err => console.log( err ) );
 
 
@@ -128,7 +133,7 @@ export default class ExercisesForm extends Component {
                                 const selectedStr = category.id === 2 ? 'checked': ''
                                 return (
                                     <div className="form__radio--wrapper">
-                                        <input type="radio" className="form__radio" name="category" key={category.id} value={category.id} checked={selectedStr} /><label htmlFor="category" className="form__radio-label">{category.name}</label>
+                                        <input type="radio" className="form__radio" name="categoryId" key={category.id} value={category.id} checked={selectedStr} /><label htmlFor="category" className="form__radio-label">{category.name}</label>
                                     </div>
                                 )
                             })

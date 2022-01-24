@@ -91,7 +91,14 @@ exports.add = ( _req, res ) => { //console.log( "req", _req );
             description: _req.body.description ? _req.body.description : ""
         })
         .then( (data) => {
-            res.status(201).json(data[0]);
+            const id = data[0]; console.log( 'id', id ); 
+            knex( 'exercise_meta' )
+                .insert( {
+                    eId: id,
+                    mId: _req.body.categoryId
+                })
+                .catch( (err) => res.status(400).send( `Error creating Exercise_meta entry [add]: ${err}` ));
+            res.status(201).json(id);
         })
         .catch((err) => res.status(400).send( `Error creating Exercise [add]: ${err}` ) );
 }
