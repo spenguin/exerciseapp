@@ -2,6 +2,7 @@
 
 @use "../partials/colours.scss" as *;
 @use "../partials/variables.scss" as *;
+@use "../partials/fonts.scss" as *;
 
 .input {
   font-size: 0.8125rem;
@@ -22,9 +23,48 @@
     margin-right: 0.5rem;
   }
 }
-
-.form__input-label {
-  font-size: 0.6875rem;
-  color: $EAGrey;
-  width: 100%;
+.form {
+  font-family: $font-family;
+  font-size: 0.75rem;
+  &__input {
+    border: 1px solid $EAGrey;
+    border-radius: $borderRadius;
+    height: 2.25rem;
+    width: 100%;
+    min-width: 15rem;
+    // margin-bottom: 1rem;
+    padding: 0.75rem;
+    // font-size: 0.75rem;
+    background-color: $EAWhite;
+    line-height: 1.25rem;
+    font-weight: 700;
+    &-label {
+      font-size: 0.6875rem;
+      color: $EAGrey;
+      width: 100%;
+      display: inline-block;
+    }
+  }
+  &:focus,
+  &:focus-visible {
+    border-color: $EASalmon;
+    border-width: 2px;
+  }
+  &__textarea {
+    width: 100%;
+    min-height: 5rem;
+    font-family: $font-family;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+  }
+  &__radio {
+    &--wrapper {
+      margin-bottom: 2rem;
+    }
+  }
+  &__note {
+    font-size: 0.75rem;
+    margin-top: 0;
+  }
 }

@@ -4,7 +4,7 @@ const knex = require('knex')(require('../knexfile').development);
 const { v4: uuid } = require('uuid');
 
 // Helper functions
-require( "../helpers/helperFunctions" );
+// require( "../helpers/helperFunctions" ); FIX - would prefer to put the helper functions in their own file
 
 // Read all Exercises
 exports.index = ( _req, res ) => {
@@ -87,10 +87,18 @@ exports.add = ( _req, res ) => { //console.log( "req", _req );
     knex( 'exercises' )
         .insert( {
             name: _req.body.name,
-            slug: convertToSlug( _req.body.name )
+            slug: convertToSlug( _req.body.name ),
+            description: _req.body.description ? _req.body.description : ""
         })
         .then( (data) => {
             res.status(201).json(data[0]);
         })
         .catch((err) => res.status(400).send( `Error creating Exercise [add]: ${err}` ) );
+}
+
+
+function convertToSlug(Text) {
+    return Text.toLowerCase()
+               .replace(/[^\w ]+/g, '')
+               .replace(/ +/g, '-');
 }

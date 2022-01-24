@@ -36,7 +36,7 @@ export default class ViewExercises extends Component {
     }
 
     componentDidUpdate(prevProps) { 
-
+        
     }
 
     render() {
