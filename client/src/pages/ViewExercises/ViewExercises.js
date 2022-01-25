@@ -20,10 +20,11 @@ import "../ViewExercises/ViewExercises.scss";
 export default class ViewExercises extends Component {
     state = {
         exercisesList: null,
-        displayModal: true
+        displayModal: true,
+        selectedExercise: null
     }
 
-    componentDidMount() {
+    componentDidMount() { 
         // Fetch list of Categories from server
         axios
             .get( 'http://localhost:8080/exercises' )
@@ -31,20 +32,28 @@ export default class ViewExercises extends Component {
                 this.setState({
                     exercisesList: response.data
                 });
+                if( this.props.match.params.exerciseId )
+                { 
+                    // this.setState( {
+                    //     selectedExercise: this.state.exercisesList.filter( exercise => exercise.id === this.props.match.params.exerciseId ),
+                    //     displayModal: true
+                    // })
+
+                }                
             })
             .catch( err => console.log( err ) );
     }
 
     componentDidUpdate(prevProps) { 
-        // Fetch updated list of Categories from server
-        axios
-            .get( 'http://localhost:8080/exercises' )
-            .then( response => { 
-                this.setState({
-                    exercisesList: response.data
-                });
+        const prevId = prevProps.match.params.exerciseId ? prevProps.match.params.exerciseId : null;
+        if( this.props.match.params.exerciseId && ( this.props.match.params.exerciseId !== prevId ) )
+        {
+            console.log( 'url has changed' );
+            this.setState( {
+                selectedExercise: this.state.exercisesList.filter( exercise => exercise.id == this.props.match.params.exerciseId ),
+                displayModal: false
             })
-            .catch( err => console.log( err ) );
+        }
     }
 
     render() {
@@ -55,7 +64,7 @@ export default class ViewExercises extends Component {
         
         const submitSearch = (e) => { 
             e.preventDefault();
-            console.log( 'selected Exercise', e.target[0].value );
+            //console.log( 'selected Exercise', e.target[0].value );
         }
 
         if( !this.state.exercisesList )
@@ -64,7 +73,7 @@ export default class ViewExercises extends Component {
         }
         else
         {
-            const selectedExercise = this.props.match.params.exerciseId ? this.state.exercisesList[this.props.match.params.exerciseId-1] : null; 
+            // const selectedExercise = this.props.match.params.exerciseId ? this.state.exercisesList[this.props.match.params.exerciseId-1] : null; 
             // console.log( 'selectedExercise', selectedExercise );
             
             return (
@@ -77,7 +86,7 @@ export default class ViewExercises extends Component {
                                 <h3>Most recent Exercises</h3>
                                 <ExercisesList exercises={this.state.exercisesList} />
                                 <Modal isActive={this.state.displayModal}>
-                                    <ExercisesForm exerciseList={this.state.exercisesList} toggleModal={toggleModal} />
+                                    <ExercisesForm exerciseList={this.state.exercisesList} selectedExercise={this.state.selectedExercise} toggleModal={toggleModal} />
                                 </Modal>
                                 <button className="btn btn__add" onClick={toggleModal}>Add an Exercise</button>
                             </div>

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import Edit from "../../assets/icons/edit-alt.svg";
 
 
-export default function ExercisesItem( exercise ) {
+export default function ExercisesItem( exercise ) { 
     return (
         <li className="exercises__list--item list__item">
             {exercise.name}<Link to={ `/exercises/${exercise.id}` }><img src={Edit} alt="Edit" /></Link>

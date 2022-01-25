@@ -14,8 +14,7 @@ import ExercisesItem from './_ExercisesItem';
 // Import SCSS
 import "../ExercisesList/ExercisesList.scss";
 
-export default function ExercisesList( {exercises} ) { //console.log( 'exercises', exercises );
-    // let o = shapeNestedArray( exercises, 'parentId' );
+export default function ExercisesList( {exercises} ) { 
 
     const myData = [].concat(exercises)
     .sort((a, b) => a.created_at > b.created_at ? -1 : 1)

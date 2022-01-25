@@ -30,9 +30,10 @@ exports.index = ( _req, res ) => {
     }
     else
     {
-        knex( 'exercises' )
+        knex( 'exercises as e' )
             // .select( 'id', 'name' ) FIX - May need to add a union
-            .orderBy( 'name' )
+            .leftJoin( 'exercise_meta as em', 'e.id', 'em.eId' )
+            .orderBy( 'e.name' )
             .then( (data) => {
                 res.status(200).json(data);
             })
@@ -59,7 +60,7 @@ exports.readByCategory = ( _req, res ) => {
 // Get Exercises with Category Ids
 exports.readWithCategory = ( _req, res ) => {
     knex( 'exercises as e' )
-        .innerJoin( 'exercise_meta as em', 'e.id', 'em.eId' )
+        .leftJoin( 'exercise_meta as em', 'e.id', 'em.eId' )
         .orderBy( 'name' )
         .then( ( data ) => {
             res.status(200).json(data);
