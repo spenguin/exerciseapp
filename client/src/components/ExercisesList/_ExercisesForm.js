@@ -54,7 +54,9 @@ export default class ExercisesForm extends Component {
             // Should probably sanitise both name and the description, though FIX
             axios
                 .post( 'http://localhost:8080/exercises', {
-                    name: e.target.name.value
+                    name: e.target.name.value,
+                    description: e.target.description.value,
+                    categoryId: e.target.categoryId.value
                 })
                 .then( response => {
                     console.log( 'response', response.data );
@@ -181,7 +183,7 @@ export default class ExercisesForm extends Component {
                     <p className="form__note">Name must be unique</p>
 
                     <label className="form__input-label">Description</label>
-                    <textarea className="form__textarea" placeholder="Description (optional)" onBlur={this.textareaValue}></textarea>
+                    <textarea className="form__textarea" placeholder="Description (optional)" name="description" onBlur={this.textareaValue}></textarea>
 
                     <label className="form__input-label">Select Category</label>
                         { 
