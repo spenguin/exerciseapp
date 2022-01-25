@@ -48,7 +48,6 @@ export default class ViewExercises extends Component {
         const prevId = prevProps.match.params.exerciseId ? prevProps.match.params.exerciseId : null;
         if( this.props.match.params.exerciseId && ( this.props.match.params.exerciseId !== prevId ) )
         {
-            console.log( 'url has changed' );
             this.setState( {
                 selectedExercise: this.state.exercisesList.filter( exercise => exercise.id == this.props.match.params.exerciseId ),
                 displayModal: false
@@ -62,9 +61,10 @@ export default class ViewExercises extends Component {
             this.setState( { displayModal: !this.state.displayModal } )
         }    
         
-        const submitSearch = (e) => { 
+        const submitSearch = (e) => {
             e.preventDefault();
-            //console.log( 'selected Exercise', e.target[0].value );
+            const exerciseMatch = this.state.exercisesList.filter( exercise => exercise.name === e.target[0].value ); 
+            window.location.replace( `/exercises/${exerciseMatch[0].id}` );
         }
 
         if( !this.state.exercisesList )

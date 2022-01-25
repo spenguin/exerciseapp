@@ -58,8 +58,8 @@ export default class ExercisesForm extends Component {
                 })
                 .then( response => {
                     console.log( 'response', response.data );
-                    return response
-                    // set state to new list
+                    // return response
+                    window.location.replace( `/exercises/` );
                 })
                 .catch( err => console.log( err ) );
 

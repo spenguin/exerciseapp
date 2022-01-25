@@ -92,11 +92,21 @@ exports.add = ( _req, res ) => { //console.log( "req", _req );
             description: _req.body.description ? _req.body.description : ""
         })
         .then( (data) => {
-            const id = data[0]; console.log( 'id', id ); 
+            const id = data[0]; //console.log( 'id', id ); 
             knex( 'exercise_meta' )
                 .insert( {
                     eId: id,
                     mId: _req.body.categoryId
+                })
+                .then( () => {
+                    knex( 'exercises as e' )
+                    // .select( 'id', 'name' ) FIX - May need to add a union
+                    .leftJoin( 'exercise_meta as em', 'e.id', 'em.eId' )
+                    .orderBy( 'e.name' )
+                    .then( (data) => {
+                        res.status(200).json(data);
+                    })
+                    .catch( (err) => res.status(400).send( `Error retrieving Exercises [index] ${err}` ) )
                 })
                 .catch( (err) => res.status(400).send( `Error creating Exercise_meta entry [add]: ${err}` ));
             res.status(201).json(id);
