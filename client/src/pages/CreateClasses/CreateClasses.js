@@ -158,6 +158,8 @@ export default class CreateClasses extends Component {
                                     }
                                     else
                                     {
+
+                                        // Separate those Exercises that support the parent from those that don't
                                         return (
                                             <>
                                                 <div className="exercises__message">

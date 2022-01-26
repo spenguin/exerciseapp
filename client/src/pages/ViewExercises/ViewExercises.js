@@ -32,8 +32,10 @@ export default class ViewExercises extends Component {
                 this.setState({
                     exercisesList: response.data
                 });
+                
                 if( this.props.match.params.exerciseId )
                 { 
+                    this.displayExercise( this.props.match.params.exerciseId );
                     // this.setState( {
                     //     selectedExercise: this.state.exercisesList.filter( exercise => exercise.id === this.props.match.params.exerciseId ),
                     //     displayModal: true
@@ -47,12 +49,21 @@ export default class ViewExercises extends Component {
     componentDidUpdate(prevProps) { 
         const prevId = prevProps.match.params.exerciseId ? prevProps.match.params.exerciseId : null;
         if( this.props.match.params.exerciseId && ( this.props.match.params.exerciseId !== prevId ) )
-        {
-            this.setState( {
-                selectedExercise: this.state.exercisesList.filter( exercise => exercise.id == this.props.match.params.exerciseId ), // FIX ==
-                displayModal: false
-            })
+        {   
+            // this.setState( {
+            //     selectedExercise: this.state.exercisesList.filter( exercise => exercise.id == this.props.match.params.exerciseId ), // FIX ==
+            //     displayModal: false
+            // })
+            this.displayExercise( this.props.match.params.exerciseId );
         }
+    }
+
+    displayExercise( id )
+    {
+        this.setState( {
+            selectedExercise: this.state.exercisesList.filter( exercise => exercise.id == id ), // FIX ==
+            displayModal: false
+        })        
     }
 
     render() {
@@ -75,7 +86,7 @@ export default class ViewExercises extends Component {
         {
             // const selectedExercise = this.props.match.params.exerciseId ? this.state.exercisesList[this.props.match.params.exerciseId-1] : null; 
             // console.log( 'selectedExercise', selectedExercise );
-            
+
             return (
                 <section className="exercises site-main">
                     <div className="exercises-wrapper max-wrapper">
