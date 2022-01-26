@@ -49,7 +49,7 @@ export default class ViewExercises extends Component {
         if( this.props.match.params.exerciseId && ( this.props.match.params.exerciseId !== prevId ) )
         {
             this.setState( {
-                selectedExercise: this.state.exercisesList.filter( exercise => exercise.id == this.props.match.params.exerciseId ),
+                selectedExercise: this.state.exercisesList.filter( exercise => exercise.id == this.props.match.params.exerciseId ), // FIX ==
                 displayModal: false
             })
         }

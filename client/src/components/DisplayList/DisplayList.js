@@ -52,15 +52,6 @@ export default class DisplayList extends Component {
         }
     }
 
-
-
-    // changeOption = (id) => (e) => {
-       
-    //     this.setState({
-    //         defaultOption: id
-    //     });
-
-
     componentDidMount() {
         this.setState({
             selected: this.props.selected
@@ -78,21 +69,22 @@ export default class DisplayList extends Component {
 
             return (
                 <div className="display-list">
+                    <input type="hidden" name="selected" value={this.state.selected} />
                     <h2 className="display-list__title">Select those exercises that are supported</h2>
                     <div className="display-list--wrapper" >
                         {
                             this.props.list.children.map( item => {
                                 return (
-                                    <div className="display-list__item" onClick={this.handleDisplayClick(item.id)}>
+                                    <div className="display-list__item" >
                                         <input 
                                             type="checkbox" 
                                             name="parentId" 
                                             key={item.id} 
                                             value={item.id} 
-                                            // onClick={this.handleDisplayClick(item.id)} 
+                                            onClick={this.handleDisplayClick(item.id)} 
                                             checked={-1 !== this.state.selected.indexOf( item.id ) }
                                         />
-                                        <label htmlFor="parentId" className="display-list__item--label" >{item.name}</label>
+                                        <label htmlFor="parentId" className="display-list__item--label" onClick={this.handleDisplayClick(item.id)}>{item.name}</label>
                                     </div>
                                 )
                             })

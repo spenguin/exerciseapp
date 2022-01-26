@@ -56,7 +56,7 @@ export default class ExercisesForm extends Component {
             })
         }
         else
-        {
+        {   
             // Name is okay. 
             // Should probably sanitise both name and the description, though FIX
             axios
