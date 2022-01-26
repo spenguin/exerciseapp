@@ -64,7 +64,7 @@ export default class ExercisesForm extends Component {
                     name: e.target.name.value,
                     description: e.target.description.value,
                     categoryId: e.target.categoryId.value,
-                    parentId: e.target.selected.value
+                    parentId: e.target.selected ? e.target.selected.value : null
                 })
                 .then( response => {
                     console.log( 'response', response.data );

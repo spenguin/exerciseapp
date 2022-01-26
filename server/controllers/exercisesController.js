@@ -99,19 +99,22 @@ exports.add = ( _req, res ) => { //console.log( "req", _req );
                     mId: _req.body.categoryId
                 })
                 .then( () => { 
-                    if( !Array.isArray( _req.body.parentId ) )
+                    if( _req.body.parentId )
                     {
-                        _req.body.parentId = [_req.body.parentId];
-                    }
+                        if( !Array.isArray( _req.body.parentId ) )
+                        {
+                            _req.body.parentId = [_req.body.parentId];
+                        }
 
-                    const fieldsToInsert = _req.body.parentId.map( parentId => 
-                        ({eId: id, parentId: parentId}));
+                        const fieldsToInsert = _req.body.parentId.map( parentId => 
+                            ({eId: id, parentId: parentId}));
 
                         knex( 'relationships' )
                             .insert( fieldsToInsert )
                             .then()
                             .catch( (err) => res.status(400).send( `Error creating Relationship entries ${err}` )
                         )
+                    }
                 })
                 .then( () => {
                     knex( 'exercises as e' )
