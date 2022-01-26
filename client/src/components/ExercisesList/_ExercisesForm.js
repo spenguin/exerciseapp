@@ -63,7 +63,8 @@ export default class ExercisesForm extends Component {
                 .post( 'http://localhost:8080/exercises', {
                     name: e.target.name.value,
                     description: e.target.description.value,
-                    categoryId: e.target.categoryId.value
+                    categoryId: e.target.categoryId.value,
+                    parentId: e.target.selected.value
                 })
                 .then( response => {
                     console.log( 'response', response.data );

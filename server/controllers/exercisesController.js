@@ -84,7 +84,7 @@ exports.add = ( _req, res ) => { //console.log( "req", _req );
     if( !_req.body.name ) {
         return res.status( 400 ).json({ success: false, error: 'Please provide required information' });
     }
-
+    console.log( 'data', _req.body );
     knex( 'exercises' )
         .insert( {
             name: _req.body.name,
@@ -97,6 +97,21 @@ exports.add = ( _req, res ) => { //console.log( "req", _req );
                 .insert( {
                     eId: id,
                     mId: _req.body.categoryId
+                })
+                .then( () => { 
+                    if( !Array.isArray( _req.body.parentId ) )
+                    {
+                        _req.body.parentId = [_req.body.parentId];
+                    }
+
+                    const fieldsToInsert = _req.body.parentId.map( parentId => 
+                        ({eId: id, parentId: parentId}));
+
+                        knex( 'relationships' )
+                            .insert( fieldsToInsert )
+                            .then()
+                            .catch( (err) => res.status(400).send( `Error creating Relationship entries ${err}` )
+                        )
                 })
                 .then( () => {
                     knex( 'exercises as e' )
