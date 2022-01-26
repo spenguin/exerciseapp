@@ -2,38 +2,117 @@
 // called from _ExerciseForm.js and CreateClasses.js
 
 // import node.js modules
-import React from "react";
+import React, {Component} from "react";
 
 
 // import SCSS
 import "./DisplayList.scss";
 
 
-export default function DisplayList( {list} ) {
-    
-    const handleDisplayClick = (id) => {
+export default class DisplayList extends Component {
+    constructor() {
+        super();
+        this.state = {
+            selected: []
+        }
+        // this.handleTextareaChange = this.handleTextareaChange.bind(this);
+        // this.submit = this.submit.bind(this);
+    }
+    static defaultProps = {
+        list: null,
+        selected: []
+    }
 
+
+
+    handleDisplayClick = (id) => (e) => {
+
+        const s = this.state.selected;
+        // If id is in selected, remove; otherwise, add
+        if( -1 === this.state.selected.indexOf( id ) )
+        {
+            s.push( id );
+        }
+        else
+        {
+            s.splice( s.indexOf( id ), 1 )
+        }
+        this.setState({
+            selected: s
+        });
+        
+        // Add class to input parent
+        if( e.target.parentElement.classList.contains( 'selected' ) )
+        {
+            e.target.parentElement.classList.remove( 'selected' );
+        }
+        else
+        {
+            e.target.parentElement.classList.add( 'selected' );
+        }
     }
-    if( !list )
-    {
-        return( <p></p>);
+
+
+
+    // changeOption = (id) => (e) => {
+       
+    //     this.setState({
+    //         defaultOption: id
+    //     });
+
+
+    componentDidMount() {
+        this.setState({
+            selected: this.props.selected
+        });
     }
-    else
-    {   
-        return (
-            <div className="display-list">
-                <h2 className="display-list__title">Select those exercises that are supported</h2>
-                {
-                    list.children.map( item => {
-                        return (
-                            <div className="display-list__item">
-                                <input type="checkbox" name="parentId" key={item.id} value={item.id} onClick={handleDisplayClick(item.id)} />
-                                <label for="parentId" className="display-list__item--label" onClick={handleDisplayClick(item.id)}>{item.name}</label>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-        )
+
+    render(){
+        console.log( 'list', this.props.list );
+        if( !this.props.list )
+        {
+            return( <p></p> );
+        }
+        else
+        {
+
+            return (
+                <div className="display-list">
+                    <h2 className="display-list__title">Select those exercises that are supported</h2>
+                    <div className="display-list--wrapper" >
+                        {
+                            this.props.list.children.map( item => {
+                                return (
+                                    <div className="display-list__item" onClick={this.handleDisplayClick(item.id)}>
+                                        <input 
+                                            type="checkbox" 
+                                            name="parentId" 
+                                            key={item.id} 
+                                            value={item.id} 
+                                            // onClick={this.handleDisplayClick(item.id)} 
+                                            checked={-1 !== this.state.selected.indexOf( item.id ) }
+                                        />
+                                        <label htmlFor="parentId" className="display-list__item--label" >{item.name}</label>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+            )
+        }
     }
+    
+    // const handleDisplayClick = (id) => {
+
+    // }
+    // if( !list )
+    // {
+    //     return( <p></p>);
+    // }
+    // else
+    // {   
+  
+    //     )
+    // }
 }

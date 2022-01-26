@@ -3,3 +3,17 @@
 @use "../../styles/partials/colours.scss" as *;
 @use "../../styles/partials/variables.scss" as *;
 @use "../../styles/partials/mixins.scss" as *;
+
+.display-list {
+  &--wrapper {
+    border: 1px solid $EAGrey;
+    height: 7rem;
+    overflow: scroll;
+    border-radius: $borderRadius;
+  }
+  &__item {
+    &.selected {
+      background-color: $EABeige;
+    }
+  }
+}

@@ -138,7 +138,7 @@ export default class ExercisesForm extends Component {
                     break;
                 default:
                     this.setState({
-                        parentList: []
+                        parentList: null
                     });
             }
         }
