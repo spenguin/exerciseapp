@@ -164,7 +164,7 @@ export default class ExercisesForm extends Component {
             })
             .catch( err => console.log( err ) );
         if( this.props.selectedExercise )
-        {
+        {   console.log( 'selected', this.props.selectedExercise[0].mId );
             this.setState({
                 defaultOption: this.props.selectedExercise[0].mId,
                 textareaValue: this.props.selectedExercise[0].description,
@@ -187,7 +187,7 @@ export default class ExercisesForm extends Component {
         else
         {
             const title = this.props.selectedExercise ? 'Amend Exercise' : 'Create a new Exercise'; 
-
+            console.log( 'option', this.state.defaultOption )
             return (
                 <form className="exercise-form form" onSubmit={this.submit}>
                     <div className="form__message error">{this.state.message}</div>
@@ -213,7 +213,7 @@ export default class ExercisesForm extends Component {
                         { 
                             this.state.categories.map( category => { 
                                 return (
-                                    <div className="form__radio--wrapper" >
+                                    <div className="form__radio--wrapper" key={category.id}>
                                         <input type="radio" className="form__radio" name="categoryId" value={category.id} checked={category.id === this.state.defaultOption} onChange={this.changeOption(category.id)} /><label htmlFor="category" className="form__radio-label" onClick={this.changeOption(category.id)}>{category.name}</label>
                                     </div>
                                 )

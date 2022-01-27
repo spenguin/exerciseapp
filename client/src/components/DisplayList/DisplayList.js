@@ -59,7 +59,7 @@ export default class DisplayList extends Component {
     }
 
     render(){
-        console.log( 'list', this.props.list );
+        
         if( !this.props.list )
         {
             return( <p></p> );
